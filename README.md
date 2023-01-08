@@ -1,4 +1,4 @@
 # FinanceNews
-Allows user to access various news about stocks and crypto 
+Allows user to access news about stocks and crypto 
 
 
