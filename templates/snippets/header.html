@@ -1,0 +1,52 @@
+<!-- imported the bootstrap template -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+<!-- this is the css style that is needed for the imported bootstrap format-->
+<style type="text/css">
+    .header {
+        background-image: linear-gradient(180deg, #eee, #fff 100px, #fff);
+      }
+
+      .container {
+        max-width: 2000px;
+      }
+      
+</style>
+
+<!-- the block of code below is taken from "headers" example in bootstrap -->
+<div class="container py-3">
+
+    <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+        <a class="d-flex align-items-center text-dark text-decoration-none" href="{% url 'home' %}">
+            {% include 'snippets/coin.html' %}
+            <span class="fs-4">FinanceNews</span>
+        </a>
+
+        <!-- if the user is logged in it will display a message to them-->
+        
+        <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+            {% if request.user.is_authenticated %}
+                <a class="align-self-center me-3 py-2 text-dark text-decoration-none" href="{% url 'stocks' %}">Stocks</a>
+                <a class="align-self-center me-3 py-2 text-dark text-decoration-none" href="{% url 'crypto' %}">Crypto</a>
+                <a type="button" class="fs-6 lh-sm btn btn-outline-dark me-3" href="{% url 'account' %}">
+                    Hello, {{request.user.username}}
+                    <br> 
+                    Edit Account details
+                </a>
+                <a type="button" class="align-self-center btn btn-outline-dark me-3" href="{% url 'logout' %}">Logout</a>
+                
+            {% else %}
+                <a class="align-self-center me-3 py-2 text-dark text-decoration-none" href="{% url 'stocks' %}">Stocks</a>
+                <a class="align-self-center me-3 py-2 text-dark text-decoration-none" href="{% url 'crypto' %}">Crypto</a>
+                <a type="button" class="btn btn-outline-dark me-3" href="{% url 'login' %}">Login</a>
+                <a type="button" class="btn btn-dark" href="{% url 'register' %}">Register</a>
+        
+            
+            {% endif %}
+        </nav>
+
+    </div>
+    <!-- end of imported bootstrap block-->
+
+<!-- </div> below is the end of the container class-->
+</div>    

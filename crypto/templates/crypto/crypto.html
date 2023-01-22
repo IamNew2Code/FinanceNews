@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    .form-findcrypto {
+        max-width: 330px;
+        padding: 15px;
+      }
+      
+    .form-findcrypto .form-floating:focus-within {
+        z-index: 2;
+    }
+
+    .form-findcrypto input[type="cryptocurrency"] {
+        margin-bottom: 10px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .form-findcrypto input[type="convert"] {
+        margin-bottom: 10px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .h3{
+        text-align: center
+    }
+
+    button{
+        margin-bottom: 50px
+    }
+    
+
+</style>
+
+
+<!-- Crypto search bar -->
+<h1 class="h3 mb-3 fw-normal">Which Cryptocurrency would you like to know more about today?</h1>
+<p style=" text-align: center;">Current options consist of: Bitcoin, Ethereum, BNB, Tether, Dogecoin, XRP, and TRON</p>
+
+<main class="form-findcrypto w-100 m-auto">
+    
+    <form method="GET">
+
+        <div class="form-floating">
+            <input type="cryptocurrency" name="cryptocurrency" class="form-control" id="floatingInput" placeholder="Bitcoin" required value="{{crypto_form.initial.cryptocurrency}}">
+            <label for="floatingInput">Enter Cryptocurrency</label>
+        </div>
+
+        <div class="form-floating">
+            <input type="convert" name="convert" class="form-control" id="floatingInput" placeholder="CAD" required value="{{crypto_form.initial.convert}}">
+            <label for="floatingInput">Enter a type of currency</label>
+        </div>
+
+        <button class="w-100 btn btn-lg btn-dark" type="submit">Submit</button>
+
+    </form>
+</main>
+<!-- end of crypto search bar-->
+
+<!-- if there is an invalid input of the slug then it will tell the user to enter a valid one-->
+{% if error %}
+    <p class="text-center text-danger">{{error}}</p>
+{% endif %}
+
+<!-- start of the crypto coin information -->
+{% if cryptocurrency %}
+
+    <p class="fs-3 fw-bold" style=" text-align: center;">{{cryptocurrency}} </p>
+    
+    <div class="container text-center">
+        <div class="row">
+            <div class="col">
+            <!-- leaves space on the left-->
+            </div>
+
+            <div class="col-11">
+                <table class="table table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">Sybmol</th>
+                            <th scope="col">Price ({{convert}})</th>
+                            <th scope="col">Percent Change in 1h</th>
+                            <th scope="col">Volume</th>
+                            <th scope="col">Volume Change in 24h</th>
+                            <th scope="col">Total Supply</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">{{symbol}}</th>
+                            <td>{{price}}</td>
+                            <td>{{percentChange}}</td>
+                            <td>{{volume}}</td>
+                            <td>{{volumeChange}}</td>
+                            <td>{{totalSupply}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col">
+                <!-- leaves space on the right-->
+            </div>
+        </div>
+
+    </div>
+<!-- end of the crypto coin information -->
+{% endif %}
+
+
+<br>
+{% include 'crypto/newsPost.html' %}
+
+{% endblock content %}

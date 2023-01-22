@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load embed_video_tags %}
+{% block content %}
+
+<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+  <h1 class="display-4 fw-normal">Finance News</h1>
+  <p class="fs-5 text-muted">Get the latest news on stocks and crypto</p>
+</div>
+
+<div class="container">
+  <div class="d-flex flex-column"> <!-- flex box from bootstrap-->
+
+
+  <!-- need to make changes here in order to make a stock/crypto graph on the home page-->
+    <h3 class = "text-center">Recent Crypto Scams</h3>
+    <p class= "text-center">Watch how Coffeezilla goes in depth to expose how these big crypto projects turned out to be a scam</p>
+    
+    <div class>
+      {% for video in videos %}
+        {% video video.url '426x240' %}
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
+
+
+{% endblock content %}
